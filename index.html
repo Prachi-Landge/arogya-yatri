@@ -152,6 +152,42 @@
       transform: translateY(-1px);
       box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
     }
+    
+    /* Benefits Slider Styles */
+    .benefits-slider-container {
+      background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+    }
+    
+    .benefits-slider {
+      transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    
+    .benefits-slide {
+      min-height: 280px;
+      display: flex;
+      align-items: center;
+    }
+    
+    .benefits-indicator {
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+    
+    .benefits-indicator:hover {
+      transform: scale(1.2);
+    }
+    
+    .benefits-prev-btn:disabled,
+    .benefits-next-btn:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+    
+    .benefits-prev-btn:not(:disabled):hover,
+    .benefits-next-btn:not(:disabled):hover {
+      transform: translateY(-1px);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    }
 
     /* Mobile responsive improvements */
     @media (max-width: 1023px) {
@@ -1200,317 +1236,361 @@
         </div>
       </div>
 
-      <!-- Key Benefits - Simplified Grid -->
-      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-8">
+      <!-- Key Benefits - Mobile Slider (lg:hidden) -->
+      <div class="relative max-w-md mx-auto lg:hidden">
+        <!-- Slider Container -->
+        <div class="benefits-slider-container overflow-hidden rounded-2xl">
+          <div class="benefits-slider flex transition-transform duration-500 ease-in-out">
+            
+            <!-- Slide 1 (Government Support + Zero Waiting) -->
+            <div class="benefits-slide w-full flex-shrink-0 p-2">
+              <div class="grid grid-cols-1 gap-4">
+                
+                <!-- Government Support -->
+                <div class="group relative benefits-expandable-card" data-benefit="government">
+                  <div class="bg-white rounded-xl p-4 border border-slate-200 shadow-sm">
+                    <div class="flex items-center justify-between mb-3 cursor-pointer benefits-card-header">
+                      <div class="flex items-start gap-3">
+                        <div class="w-8 h-8 rounded-lg bg-gradient-to-br from-blue-500 to-blue-600 flex items-center justify-center shadow-md flex-shrink-0">
+                          <i class='bx bx-shield-quarter text-sm text-white'></i>
+                        </div>
+                        <h4 class="font-semibold text-slate-900 text-sm">Government 'Heal in India' Program</h4>
+                      </div>
+                      <i class='bx bx-chevron-down text-lg text-slate-400 benefits-expand-icon transition-transform duration-300'></i>
+                    </div>
+                    <div class="benefits-card-content max-h-0 overflow-hidden transition-all duration-300 ease-in-out">
+                      <p class="text-xs text-slate-600 leading-relaxed">
+                        Official support with simplified e-Medical visas, fast-track approvals, and dedicated helplines for international patients seeking medical treatment in India.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Zero Waiting -->
+                <div class="group relative benefits-expandable-card" data-benefit="waiting">
+                  <div class="bg-white rounded-xl p-4 border border-slate-200 shadow-sm">
+                    <div class="flex items-center justify-between mb-3 cursor-pointer benefits-card-header">
+                      <div class="flex items-start gap-3">
+                        <div class="w-8 h-8 rounded-lg bg-gradient-to-br from-emerald-500 to-emerald-600 flex items-center justify-center shadow-md flex-shrink-0">
+                          <i class='bx bx-time text-sm text-white'></i>
+                        </div>
+                        <h4 class="font-semibold text-slate-900 text-sm">Zero Waiting Period</h4>
+                      </div>
+                      <i class='bx bx-chevron-down text-lg text-slate-400 benefits-expand-icon transition-transform duration-300'></i>
+                    </div>
+                    <div class="benefits-card-content max-h-0 overflow-hidden transition-all duration-300 ease-in-out">
+                      <p class="text-xs text-slate-600 leading-relaxed">
+                        Immediate care and faster recovery with no waiting lists for treatments and procedures. Get the medical attention you need without delays.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+
+            <!-- Slide 2 (World-Class Care + Affordable Excellence) -->
+            <div class="benefits-slide w-full flex-shrink-0 p-4">
+              <div class="grid grid-cols-1 gap-4">
+                
+                <!-- World-Class Care -->
+                <div class="group relative benefits-expandable-card" data-benefit="healthcare">
+                  <div class="bg-white rounded-xl p-4 border border-slate-200 shadow-sm">
+                    <div class="flex items-center justify-between mb-3 cursor-pointer benefits-card-header">
+                      <div class="flex items-start gap-3">
+                        <div class="w-8 h-8 rounded-lg bg-gradient-to-br from-teal-500 to-teal-600 flex items-center justify-center shadow-md flex-shrink-0">
+                          <i class='bx bx-health text-sm text-white'></i>
+                        </div>
+                        <h4 class="font-semibold text-slate-900 text-sm">World-Class Healthcare</h4>
+                      </div>
+                      <i class='bx bx-chevron-down text-lg text-slate-400 benefits-expand-icon transition-transform duration-300'></i>
+                    </div>
+                    <div class="benefits-card-content max-h-0 overflow-hidden transition-all duration-300 ease-in-out">
+                      <p class="text-xs text-slate-600 leading-relaxed">
+                        NABH/JCI accredited hospitals with internationally trained doctors and cutting-edge technology. Experience healthcare standards that match global best practices.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Affordable Excellence -->
+                <div class="group relative benefits-expandable-card" data-benefit="affordable">
+                  <div class="bg-white rounded-xl p-4 border border-slate-200 shadow-sm">
+                    <div class="flex items-center justify-between mb-3 cursor-pointer benefits-card-header">
+                      <div class="flex items-start gap-3">
+                        <div class="w-8 h-8 rounded-lg bg-gradient-to-br from-orange-500 to-orange-600 flex items-center justify-center shadow-md flex-shrink-0">
+                          <i class='bx bx-dollar-circle text-sm text-white'></i>
+                        </div>
+                        <h4 class="font-semibold text-slate-900 text-sm">Affordable Excellence</h4>
+                      </div>
+                      <i class='bx bx-chevron-down text-lg text-slate-400 benefits-expand-icon transition-transform duration-300'></i>
+                    </div>
+                    <div class="benefits-card-content max-h-0 overflow-hidden transition-all duration-300 ease-in-out">
+                      <p class="text-xs text-slate-600 leading-relaxed">
+                        High-quality treatments at affordable costs without compromising on safety or outcomes. Save significantly while receiving world-class medical care.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+
+            <!-- Slide 3 (Clear Communication + Complete Support) -->
+            <div class="benefits-slide w-full flex-shrink-0 p-4">
+              <div class="grid grid-cols-1 gap-4">
+                
+                <!-- Clear Communication -->
+                <div class="group relative benefits-expandable-card" data-benefit="communication">
+                  <div class="bg-white rounded-xl p-4 border border-slate-200 shadow-sm">
+                    <div class="flex items-center justify-between mb-3 cursor-pointer benefits-card-header">
+                      <div class="flex items-start gap-3">
+                        <div class="w-8 h-8 rounded-lg bg-gradient-to-br from-violet-500 to-violet-600 flex items-center justify-center shadow-md flex-shrink-0">
+                          <i class='bx bx-world text-sm text-white'></i>
+                        </div>
+                        <h4 class="font-semibold text-slate-900 text-sm">Clear Communication</h4>
+                      </div>
+                      <i class='bx bx-chevron-down text-lg text-slate-400 benefits-expand-icon transition-transform duration-300'></i>
+                    </div>
+                    <div class="benefits-card-content max-h-0 overflow-hidden transition-all duration-300 ease-in-out">
+                      <p class="text-xs text-slate-600 leading-relaxed">
+                        English-speaking medical teams and professional interpreters for seamless communication. Never worry about language barriers during your treatment.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Complete Support System -->
+                <div class="group relative benefits-expandable-card" data-benefit="support">
+                  <div class="bg-white rounded-xl p-4 border border-slate-200 shadow-sm">
+                    <div class="flex items-center justify-between mb-3 cursor-pointer benefits-card-header">
+                      <div class="flex items-start gap-3">
+                        <div class="w-8 h-8 rounded-lg bg-gradient-to-br from-cyan-500 to-cyan-600 flex items-center justify-center shadow-md flex-shrink-0">
+                          <i class='bx bx-support text-sm text-white'></i>
+                        </div>
+                        <h4 class="font-semibold text-slate-900 text-sm">Complete Support System</h4>
+                      </div>
+                      <i class='bx bx-chevron-down text-lg text-slate-400 benefits-expand-icon transition-transform duration-300'></i>
+                    </div>
+                    <div class="benefits-card-content max-h-0 overflow-hidden transition-all duration-300 ease-in-out">
+                      <p class="text-xs text-slate-600 leading-relaxed">
+                        24/7 personalized care, one-stop MVT portal, and comprehensive concierge services. Complete assistance from arrival to departure and beyond.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+
+            <!-- Slide 4 (Holistic Healing + Safe & Connected) -->
+            <div class="benefits-slide w-full flex-shrink-0 p-4">
+              <div class="grid grid-cols-1 gap-4">
+                
+                <!-- Holistic Healing -->
+                <div class="group relative benefits-expandable-card" data-benefit="holistic">
+                  <div class="bg-white rounded-xl p-4 border border-slate-200 shadow-sm">
+                    <div class="flex items-center justify-between mb-3 cursor-pointer benefits-card-header">
+                      <div class="flex items-start gap-3">
+                        <div class="w-8 h-8 rounded-lg bg-gradient-to-br from-amber-500 to-amber-600 flex items-center justify-center shadow-md flex-shrink-0">
+                          <i class='bx bx-spa text-sm text-white'></i>
+                        </div>
+                        <h4 class="font-semibold text-slate-900 text-sm">Holistic Healing Experience</h4>
+                      </div>
+                      <i class='bx bx-chevron-down text-lg text-slate-400 benefits-expand-icon transition-transform duration-300'></i>
+                    </div>
+                    <div class="benefits-card-content max-h-0 overflow-hidden transition-all duration-300 ease-in-out">
+                      <p class="text-xs text-slate-600 leading-relaxed">
+                        Combine modern medicine with Ayurveda, Yoga, and wellness traditions in scenic recovery destinations. Heal your body, mind, and spirit in India's serene environments.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Safe & Well-Connected -->
+                <div class="group relative benefits-expandable-card" data-benefit="safety">
+                  <div class="bg-white rounded-xl p-4 border border-slate-200 shadow-sm">
+                    <div class="flex items-center justify-between mb-3 cursor-pointer benefits-card-header">
+                      <div class="flex items-start gap-3">
+                        <div class="w-8 h-8 rounded-lg bg-gradient-to-br from-indigo-500 to-indigo-600 flex items-center justify-center shadow-md flex-shrink-0">
+                          <i class='bx bx-shield text-sm text-white'></i>
+                        </div>
+                        <h4 class="font-semibold text-slate-900 text-sm">Safe & Well-Connected</h4>
+                      </div>
+                      <i class='bx bx-chevron-down text-lg text-slate-400 benefits-expand-icon transition-transform duration-300'></i>
+                    </div>
+                    <div class="benefits-card-content max-h-0 overflow-hidden transition-all duration-300 ease-in-out">
+                      <p class="text-xs text-slate-600 leading-relaxed">
+                        Safe cities with fast-track airport assistance, interpreter support, and excellent connectivity. Travel with confidence in secure, well-connected medical destinations.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+
+          </div>
+        </div>
+        
+        <!-- Navigation Controls -->
+        <div class="flex items-center justify-center mt-6 gap-4">
+          <!-- Previous Button -->
+          <button class="benefits-prev-btn bg-white hover:bg-slate-50 border border-slate-200 rounded-full p-2 shadow-md transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed">
+            <i class='bx bx-chevron-left text-xl text-slate-600'></i>
+          </button>
+          
+          <!-- Slide Indicators -->
+          <div class="flex gap-2">
+            <button class="benefits-indicator w-2 h-2 rounded-full bg-teal-500 transition-all duration-300" data-slide="0"></button>
+            <button class="benefits-indicator w-2 h-2 rounded-full bg-slate-300 hover:bg-slate-400 transition-all duration-300" data-slide="1"></button>
+            <button class="benefits-indicator w-2 h-2 rounded-full bg-slate-300 hover:bg-slate-400 transition-all duration-300" data-slide="2"></button>
+            <button class="benefits-indicator w-2 h-2 rounded-full bg-slate-300 hover:bg-slate-400 transition-all duration-300" data-slide="3"></button>
+          </div>
+          
+          <!-- Next Button -->
+          <button class="benefits-next-btn bg-white hover:bg-slate-50 border border-slate-200 rounded-full p-2 shadow-md transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed">
+            <i class='bx bx-chevron-right text-xl text-slate-600'></i>
+          </button>
+        </div>
+        
+      </div>
+
+      <!-- Key Benefits - Desktop Grid (hidden on mobile, visible on lg+) -->
+      <div class="hidden lg:grid grid-cols-3 gap-8">
 
         <!-- Government Support -->
         <div class="group relative benefits-expandable-card" data-benefit="government">
-          <div
-            class="bg-white rounded-xl p-4 sm:p-6 border border-slate-200 shadow-sm hover:shadow-lg transition-all duration-300">
-            <!-- Mobile Header (Clickable) -->
-            <div class="flex items-center justify-between lg:hidden mb-3 cursor-pointer benefits-card-header">
-              <div class="flex items-start gap-3">
-                <div
-                  class="w-8 h-8 rounded-lg bg-gradient-to-br from-blue-500 to-blue-600 flex items-center justify-center shadow-md flex-shrink-0">
-                  <i class='bx bx-shield-quarter text-sm text-white'></i>
-                </div>
-                <h4 class="font-semibold text-slate-900 text-sm">Government 'Heal in India' Program</h4>
-              </div>
-              <i class='bx bx-chevron-down text-lg text-slate-400 benefits-expand-icon transition-transform duration-300'></i>
-            </div>
-            
-            <!-- Desktop Layout -->
-            <div class="hidden lg:flex items-start gap-3 sm:gap-4">
-              <div
-                class="w-10 h-10 sm:w-12 sm:h-12 rounded-lg bg-gradient-to-br from-blue-500 to-blue-600 flex items-center justify-center shadow-md flex-shrink-0">
-                <i class='bx bx-shield-quarter text-lg sm:text-xl text-white'></i>
+          <div class="bg-white rounded-xl p-6 border border-slate-200 shadow-sm hover:shadow-lg transition-all duration-300">
+            <div class="flex items-start gap-4">
+              <div class="w-12 h-12 rounded-lg bg-gradient-to-br from-blue-500 to-blue-600 flex items-center justify-center shadow-md flex-shrink-0">
+                <i class='bx bx-shield-quarter text-xl text-white'></i>
               </div>
               <div class="flex-1 min-w-0">
-                <h4 class="font-semibold text-slate-900 mb-2 text-sm sm:text-base">Government 'Heal in India' Program</h4>
-                <p class="text-xs sm:text-sm text-slate-600 leading-relaxed">
+                <h4 class="font-semibold text-slate-900 mb-2 text-base">Government 'Heal in India' Program</h4>
+                <p class="text-sm text-slate-600 leading-relaxed">
                   Official support with simplified e-Medical visas, fast-track approvals, and dedicated helplines.
                 </p>
               </div>
-            </div>
-
-            <!-- Mobile Expandable Content -->
-            <div class="lg:hidden benefits-card-content max-h-0 overflow-hidden transition-all duration-300 ease-in-out">
-              <p class="text-xs text-slate-600 leading-relaxed">
-                Official support with simplified e-Medical visas, fast-track approvals, and dedicated helplines for international patients seeking medical treatment in India.
-              </p>
             </div>
           </div>
         </div>
 
         <!-- Zero Waiting -->
         <div class="group relative benefits-expandable-card" data-benefit="waiting">
-          <div
-            class="bg-white rounded-xl p-4 sm:p-6 border border-slate-200 shadow-sm hover:shadow-lg transition-all duration-300">
-            <!-- Mobile Header (Clickable) -->
-            <div class="flex items-center justify-between lg:hidden mb-3 cursor-pointer benefits-card-header">
-              <div class="flex items-start gap-3">
-                <div
-                  class="w-8 h-8 rounded-lg bg-gradient-to-br from-emerald-500 to-emerald-600 flex items-center justify-center shadow-md flex-shrink-0">
-                  <i class='bx bx-time text-sm text-white'></i>
-                </div>
-                <h4 class="font-semibold text-slate-900 text-sm">Zero Waiting Period</h4>
-              </div>
-              <i class='bx bx-chevron-down text-lg text-slate-400 benefits-expand-icon transition-transform duration-300'></i>
-            </div>
-            
-            <!-- Desktop Layout -->
-            <div class="hidden lg:flex items-start gap-3 sm:gap-4">
-              <div
-                class="w-10 h-10 sm:w-12 sm:h-12 rounded-lg bg-gradient-to-br from-emerald-500 to-emerald-600 flex items-center justify-center shadow-md flex-shrink-0">
-                <i class='bx bx-time text-lg sm:text-xl text-white'></i>
+          <div class="bg-white rounded-xl p-6 border border-slate-200 shadow-sm hover:shadow-lg transition-all duration-300">
+            <div class="flex items-start gap-4">
+              <div class="w-12 h-12 rounded-lg bg-gradient-to-br from-emerald-500 to-emerald-600 flex items-center justify-center shadow-md flex-shrink-0">
+                <i class='bx bx-time text-xl text-white'></i>
               </div>
               <div class="flex-1 min-w-0">
-                <h4 class="font-semibold text-slate-900 mb-2 text-sm sm:text-base">Zero Waiting Period</h4>
-                <p class="text-xs sm:text-sm text-slate-600 leading-relaxed">
+                <h4 class="font-semibold text-slate-900 mb-2 text-base">Zero Waiting Period</h4>
+                <p class="text-sm text-slate-600 leading-relaxed">
                   Immediate care and faster recovery with no waiting lists for treatments and procedures.
                 </p>
               </div>
-            </div>
-
-            <!-- Mobile Expandable Content -->
-            <div class="lg:hidden benefits-card-content max-h-0 overflow-hidden transition-all duration-300 ease-in-out">
-              <p class="text-xs text-slate-600 leading-relaxed">
-                Immediate care and faster recovery with no waiting lists for treatments and procedures. Get the medical attention you need without delays.
-              </p>
             </div>
           </div>
         </div>
 
         <!-- World-Class Care -->
         <div class="group relative benefits-expandable-card" data-benefit="healthcare">
-          <div
-            class="bg-white rounded-xl p-4 sm:p-6 border border-slate-200 shadow-sm hover:shadow-lg transition-all duration-300">
-            <!-- Mobile Header (Clickable) -->
-            <div class="flex items-center justify-between lg:hidden mb-3 cursor-pointer benefits-card-header">
-              <div class="flex items-start gap-3">
-                <div
-                  class="w-8 h-8 rounded-lg bg-gradient-to-br from-teal-500 to-teal-600 flex items-center justify-center shadow-md flex-shrink-0">
-                  <i class='bx bx-health text-sm text-white'></i>
-                </div>
-                <h4 class="font-semibold text-slate-900 text-sm">World-Class Healthcare</h4>
-              </div>
-              <i class='bx bx-chevron-down text-lg text-slate-400 benefits-expand-icon transition-transform duration-300'></i>
-            </div>
-            
-            <!-- Desktop Layout -->
-            <div class="hidden lg:flex items-start gap-3 sm:gap-4">
-              <div
-                class="w-10 h-10 sm:w-12 sm:h-12 rounded-lg bg-gradient-to-br from-teal-500 to-teal-600 flex items-center justify-center shadow-md flex-shrink-0">
-                <i class='bx bx-health text-lg sm:text-xl text-white'></i>
+          <div class="bg-white rounded-xl p-6 border border-slate-200 shadow-sm hover:shadow-lg transition-all duration-300">
+            <div class="flex items-start gap-4">
+              <div class="w-12 h-12 rounded-lg bg-gradient-to-br from-teal-500 to-teal-600 flex items-center justify-center shadow-md flex-shrink-0">
+                <i class='bx bx-health text-xl text-white'></i>
               </div>
               <div class="flex-1 min-w-0">
-                <h4 class="font-semibold text-slate-900 mb-2 text-sm sm:text-base">World-Class Healthcare</h4>
-                <p class="text-xs sm:text-sm text-slate-600 leading-relaxed">
+                <h4 class="font-semibold text-slate-900 mb-2 text-base">World-Class Healthcare</h4>
+                <p class="text-sm text-slate-600 leading-relaxed">
                   NABH/JCI accredited hospitals with internationally trained doctors and cutting-edge technology.
                 </p>
               </div>
             </div>
-
-            <!-- Mobile Expandable Content -->
-            <div class="lg:hidden benefits-card-content max-h-0 overflow-hidden transition-all duration-300 ease-in-out">
-              <p class="text-xs text-slate-600 leading-relaxed">
-                NABH/JCI accredited hospitals with internationally trained doctors and cutting-edge technology. Experience healthcare standards that match global best practices.
-              </p>
-            </div>
           </div>
         </div>
 
-        <!-- Affordable Quality -->
+        <!-- Affordable Excellence -->
         <div class="group relative benefits-expandable-card" data-benefit="affordable">
-          <div
-            class="bg-white rounded-xl p-4 sm:p-6 border border-slate-200 shadow-sm hover:shadow-lg transition-all duration-300">
-            <!-- Mobile Header (Clickable) -->
-            <div class="flex items-center justify-between lg:hidden mb-3 cursor-pointer benefits-card-header">
-              <div class="flex items-start gap-3">
-                <div
-                  class="w-8 h-8 rounded-lg bg-gradient-to-br from-orange-500 to-orange-600 flex items-center justify-center shadow-md flex-shrink-0">
-                  <i class='bx bx-dollar-circle text-sm text-white'></i>
-                </div>
-                <h4 class="font-semibold text-slate-900 text-sm">Affordable Excellence</h4>
-              </div>
-              <i class='bx bx-chevron-down text-lg text-slate-400 benefits-expand-icon transition-transform duration-300'></i>
-            </div>
-            
-            <!-- Desktop Layout -->
-            <div class="hidden lg:flex items-start gap-3 sm:gap-4">
-              <div
-                class="w-10 h-10 sm:w-12 sm:h-12 rounded-lg bg-gradient-to-br from-orange-500 to-orange-600 flex items-center justify-center shadow-md flex-shrink-0">
-                <i class='bx bx-dollar-circle text-lg sm:text-xl text-white'></i>
+          <div class="bg-white rounded-xl p-6 border border-slate-200 shadow-sm hover:shadow-lg transition-all duration-300">
+            <div class="flex items-start gap-4">
+              <div class="w-12 h-12 rounded-lg bg-gradient-to-br from-orange-500 to-orange-600 flex items-center justify-center shadow-md flex-shrink-0">
+                <i class='bx bx-dollar-circle text-xl text-white'></i>
               </div>
               <div class="flex-1 min-w-0">
-                <h4 class="font-semibold text-slate-900 mb-2 text-sm sm:text-base">Affordable Excellence</h4>
-                <p class="text-xs sm:text-sm text-slate-600 leading-relaxed">
+                <h4 class="font-semibold text-slate-900 mb-2 text-base">Affordable Excellence</h4>
+                <p class="text-sm text-slate-600 leading-relaxed">
                   High-quality treatments at affordable costs without compromising on safety or outcomes.
                 </p>
               </div>
             </div>
-
-            <!-- Mobile Expandable Content -->
-            <div class="lg:hidden benefits-card-content max-h-0 overflow-hidden transition-all duration-300 ease-in-out">
-              <p class="text-xs text-slate-600 leading-relaxed">
-                High-quality treatments at affordable costs without compromising on safety or outcomes. Save significantly while receiving world-class medical care.
-              </p>
-            </div>
           </div>
         </div>
 
-        <!-- Language & Communication -->
+        <!-- Clear Communication -->
         <div class="group relative benefits-expandable-card" data-benefit="communication">
-          <div
-            class="bg-white rounded-xl p-4 sm:p-6 border border-slate-200 shadow-sm hover:shadow-lg transition-all duration-300">
-            <!-- Mobile Header (Clickable) -->
-            <div class="flex items-center justify-between lg:hidden mb-3 cursor-pointer benefits-card-header">
-              <div class="flex items-start gap-3">
-                <div
-                  class="w-8 h-8 rounded-lg bg-gradient-to-br from-violet-500 to-violet-600 flex items-center justify-center shadow-md flex-shrink-0">
-                  <i class='bx bx-world text-sm text-white'></i>
-                </div>
-                <h4 class="font-semibold text-slate-900 text-sm">Clear Communication</h4>
-              </div>
-              <i class='bx bx-chevron-down text-lg text-slate-400 benefits-expand-icon transition-transform duration-300'></i>
-            </div>
-            
-            <!-- Desktop Layout -->
-            <div class="hidden lg:flex items-start gap-3 sm:gap-4">
-              <div
-                class="w-10 h-10 sm:w-12 sm:h-12 rounded-lg bg-gradient-to-br from-violet-500 to-violet-600 flex items-center justify-center shadow-md flex-shrink-0">
-                <i class='bx bx-world text-lg sm:text-xl text-white'></i>
+          <div class="bg-white rounded-xl p-6 border border-slate-200 shadow-sm hover:shadow-lg transition-all duration-300">
+            <div class="flex items-start gap-4">
+              <div class="w-12 h-12 rounded-lg bg-gradient-to-br from-violet-500 to-violet-600 flex items-center justify-center shadow-md flex-shrink-0">
+                <i class='bx bx-world text-xl text-white'></i>
               </div>
               <div class="flex-1 min-w-0">
-                <h4 class="font-semibold text-slate-900 mb-2 text-sm sm:text-base">Clear Communication</h4>
-                <p class="text-xs sm:text-sm text-slate-600 leading-relaxed">
+                <h4 class="font-semibold text-slate-900 mb-2 text-base">Clear Communication</h4>
+                <p class="text-sm text-slate-600 leading-relaxed">
                   English-speaking medical teams and professional interpreters for seamless communication.
                 </p>
               </div>
             </div>
-
-            <!-- Mobile Expandable Content -->
-            <div class="lg:hidden benefits-card-content max-h-0 overflow-hidden transition-all duration-300 ease-in-out">
-              <p class="text-xs text-slate-600 leading-relaxed">
-                English-speaking medical teams and professional interpreters for seamless communication. Never worry about language barriers during your treatment.
-              </p>
-            </div>
           </div>
         </div>
 
-        <!-- Comprehensive Support -->
+        <!-- Complete Support System -->
         <div class="group relative benefits-expandable-card" data-benefit="support">
-          <div
-            class="bg-white rounded-xl p-4 sm:p-6 border border-slate-200 shadow-sm hover:shadow-lg transition-all duration-300">
-            <!-- Mobile Header (Clickable) -->
-            <div class="flex items-center justify-between lg:hidden mb-3 cursor-pointer benefits-card-header">
-              <div class="flex items-start gap-3">
-                <div
-                  class="w-8 h-8 rounded-lg bg-gradient-to-br from-cyan-500 to-cyan-600 flex items-center justify-center shadow-md flex-shrink-0">
-                  <i class='bx bx-support text-sm text-white'></i>
-                </div>
-                <h4 class="font-semibold text-slate-900 text-sm">Complete Support System</h4>
-              </div>
-              <i class='bx bx-chevron-down text-lg text-slate-400 benefits-expand-icon transition-transform duration-300'></i>
-            </div>
-            
-            <!-- Desktop Layout -->
-            <div class="hidden lg:flex items-start gap-3 sm:gap-4">
-              <div
-                class="w-10 h-10 sm:w-12 sm:h-12 rounded-lg bg-gradient-to-br from-cyan-500 to-cyan-600 flex items-center justify-center shadow-md flex-shrink-0">
-                <i class='bx bx-support text-lg sm:text-xl text-white'></i>
+          <div class="bg-white rounded-xl p-6 border border-slate-200 shadow-sm hover:shadow-lg transition-all duration-300">
+            <div class="flex items-start gap-4">
+              <div class="w-12 h-12 rounded-lg bg-gradient-to-br from-cyan-500 to-cyan-600 flex items-center justify-center shadow-md flex-shrink-0">
+                <i class='bx bx-support text-xl text-white'></i>
               </div>
               <div class="flex-1 min-w-0">
-                <h4 class="font-semibold text-slate-900 mb-2 text-sm sm:text-base">Complete Support System</h4>
-                <p class="text-xs sm:text-sm text-slate-600 leading-relaxed">
+                <h4 class="font-semibold text-slate-900 mb-2 text-base">Complete Support System</h4>
+                <p class="text-sm text-slate-600 leading-relaxed">
                   24/7 personalized care, one-stop MVT portal, and comprehensive concierge services.
                 </p>
               </div>
-            </div>
-
-            <!-- Mobile Expandable Content -->
-            <div class="lg:hidden benefits-card-content max-h-0 overflow-hidden transition-all duration-300 ease-in-out">
-              <p class="text-xs text-slate-600 leading-relaxed">
-                24/7 personalized care, one-stop MVT portal, and comprehensive concierge services. Complete assistance from arrival to departure and beyond.
-              </p>
             </div>
           </div>
         </div>
 
         <!-- Holistic Healing -->
         <div class="group relative benefits-expandable-card" data-benefit="holistic">
-          <div
-            class="bg-white rounded-xl p-4 sm:p-6 border border-slate-200 shadow-sm hover:shadow-lg transition-all duration-300">
-            <!-- Mobile Header (Clickable) -->
-            <div class="flex items-center justify-between lg:hidden mb-3 cursor-pointer benefits-card-header">
-              <div class="flex items-start gap-3">
-                <div
-                  class="w-8 h-8 rounded-lg bg-gradient-to-br from-amber-500 to-amber-600 flex items-center justify-center shadow-md flex-shrink-0">
-                  <i class='bx bx-spa text-sm text-white'></i>
-                </div>
-                <h4 class="font-semibold text-slate-900 text-sm">Holistic Healing Experience</h4>
-              </div>
-              <i class='bx bx-chevron-down text-lg text-slate-400 benefits-expand-icon transition-transform duration-300'></i>
-            </div>
-            
-            <!-- Desktop Layout -->
-            <div class="hidden lg:flex items-start gap-3 sm:gap-4">
-              <div
-                class="w-10 h-10 sm:w-12 sm:h-12 rounded-lg bg-gradient-to-br from-amber-500 to-amber-600 flex items-center justify-center shadow-md flex-shrink-0">
-                <i class='bx bx-spa text-lg sm:text-xl text-white'></i>
+          <div class="bg-white rounded-xl p-6 border border-slate-200 shadow-sm hover:shadow-lg transition-all duration-300">
+            <div class="flex items-start gap-4">
+              <div class="w-12 h-12 rounded-lg bg-gradient-to-br from-amber-500 to-amber-600 flex items-center justify-center shadow-md flex-shrink-0">
+                <i class='bx bx-spa text-xl text-white'></i>
               </div>
               <div class="flex-1 min-w-0">
-                <h4 class="font-semibold text-slate-900 mb-2 text-sm sm:text-base">Holistic Healing Experience</h4>
-                <p class="text-xs sm:text-sm text-slate-600 leading-relaxed">
+                <h4 class="font-semibold text-slate-900 mb-2 text-base">Holistic Healing Experience</h4>
+                <p class="text-sm text-slate-600 leading-relaxed">
                   Combine modern medicine with Ayurveda, Yoga, and wellness traditions in scenic recovery destinations.
                 </p>
               </div>
             </div>
-
-            <!-- Mobile Expandable Content -->
-            <div class="lg:hidden benefits-card-content max-h-0 overflow-hidden transition-all duration-300 ease-in-out">
-              <p class="text-xs text-slate-600 leading-relaxed">
-                Combine modern medicine with Ayurveda, Yoga, and wellness traditions in scenic recovery destinations. Heal your body, mind, and spirit in India's serene environments.
-              </p>
-            </div>
           </div>
         </div>
 
-        <!-- Safe & Connected -->
+        <!-- Safe & Well-Connected -->
         <div class="group relative benefits-expandable-card" data-benefit="safety">
-          <div
-            class="bg-white rounded-xl p-4 sm:p-6 border border-slate-200 shadow-sm hover:shadow-lg transition-all duration-300">
-            <!-- Mobile Header (Clickable) -->
-            <div class="flex items-center justify-between lg:hidden mb-3 cursor-pointer benefits-card-header">
-              <div class="flex items-start gap-3">
-                <div
-                  class="w-8 h-8 rounded-lg bg-gradient-to-br from-indigo-500 to-indigo-600 flex items-center justify-center shadow-md flex-shrink-0">
-                  <i class='bx bx-shield text-sm text-white'></i>
-                </div>
-                <h4 class="font-semibold text-slate-900 text-sm">Safe & Well-Connected</h4>
-              </div>
-              <i class='bx bx-chevron-down text-lg text-slate-400 benefits-expand-icon transition-transform duration-300'></i>
-            </div>
-            
-            <!-- Desktop Layout -->
-            <div class="hidden lg:flex items-start gap-3 sm:gap-4">
-              <div
-                class="w-10 h-10 sm:w-12 sm:h-12 rounded-lg bg-gradient-to-br from-indigo-500 to-indigo-600 flex items-center justify-center shadow-md flex-shrink-0">
-                <i class='bx bx-shield text-lg sm:text-xl text-white'></i>
+          <div class="bg-white rounded-xl p-6 border border-slate-200 shadow-sm hover:shadow-lg transition-all duration-300">
+            <div class="flex items-start gap-4">
+              <div class="w-12 h-12 rounded-lg bg-gradient-to-br from-indigo-500 to-indigo-600 flex items-center justify-center shadow-md flex-shrink-0">
+                <i class='bx bx-shield text-xl text-white'></i>
               </div>
               <div class="flex-1 min-w-0">
-                <h4 class="font-semibold text-slate-900 mb-2 text-sm sm:text-base">Safe & Well-Connected</h4>
-                <p class="text-xs sm:text-sm text-slate-600 leading-relaxed">
+                <h4 class="font-semibold text-slate-900 mb-2 text-base">Safe & Well-Connected</h4>
+                <p class="text-sm text-slate-600 leading-relaxed">
                   Safe cities with fast-track airport assistance, interpreter support, and excellent connectivity.
                 </p>
               </div>
-            </div>
-
-            <!-- Mobile Expandable Content -->
-            <div class="lg:hidden benefits-card-content max-h-0 overflow-hidden transition-all duration-300 ease-in-out">
-              <p class="text-xs text-slate-600 leading-relaxed">
-                Safe cities with fast-track airport assistance, interpreter support, and excellent connectivity. Travel with confidence in secure, well-connected medical destinations.
-              </p>
             </div>
           </div>
         </div>
@@ -2337,6 +2417,67 @@
         }
         updateSlider();
       }, 5000); // Change slide every 5 seconds
+      
+      // Benefits Slider functionality
+      let benefitsCurrentSlide = 0;
+      const benefitsTotalSlides = 4;
+      const benefitsSlider = document.querySelector('.benefits-slider');
+      const benefitsIndicators = document.querySelectorAll('.benefits-indicator');
+      const benefitsPrevBtn = document.querySelector('.benefits-prev-btn');
+      const benefitsNextBtn = document.querySelector('.benefits-next-btn');
+      
+      function updateBenefitsSlider() {
+        // Move slider
+        if (benefitsSlider) {
+          benefitsSlider.style.transform = `translateX(-${benefitsCurrentSlide * 100}%)`;
+        }
+        
+        // Update indicators
+        benefitsIndicators.forEach((indicator, index) => {
+          if (index === benefitsCurrentSlide) {
+            indicator.classList.remove('bg-slate-300');
+            indicator.classList.add('bg-teal-500');
+          } else {
+            indicator.classList.remove('bg-teal-500');
+            indicator.classList.add('bg-slate-300');
+          }
+        });
+        
+        // Update button states
+        if (benefitsPrevBtn) benefitsPrevBtn.disabled = benefitsCurrentSlide === 0;
+        if (benefitsNextBtn) benefitsNextBtn.disabled = benefitsCurrentSlide === benefitsTotalSlides - 1;
+      }
+      
+      // Previous button
+      if (benefitsPrevBtn) {
+        benefitsPrevBtn.addEventListener('click', () => {
+          if (benefitsCurrentSlide > 0) {
+            benefitsCurrentSlide--;
+            updateBenefitsSlider();
+          }
+        });
+      }
+      
+      // Next button
+      if (benefitsNextBtn) {
+        benefitsNextBtn.addEventListener('click', () => {
+          if (benefitsCurrentSlide < benefitsTotalSlides - 1) {
+            benefitsCurrentSlide++;
+            updateBenefitsSlider();
+          }
+        });
+      }
+      
+      // Indicator buttons
+      benefitsIndicators.forEach((indicator, index) => {
+        indicator.addEventListener('click', () => {
+          benefitsCurrentSlide = index;
+          updateBenefitsSlider();
+        });
+      });
+      
+      // Initialize benefits slider
+      updateBenefitsSlider();
       
     </script>
   </section>
