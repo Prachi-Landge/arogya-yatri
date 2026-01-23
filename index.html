@@ -159,7 +159,7 @@
     }
     
     .benefits-slider {
-      transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+      transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     }
     
     .benefits-slide {
@@ -238,63 +238,159 @@
       transform: translateY(-2px);
     }
     
-    /* Stack Animation for "Why Choose Arogya Yatri" Section */
+    /* Sticky Card Stacking Animation */
+    .sticky-card-section {
+      min-height: 30vh;
+
+      height: auto;
+      position: sticky;
+      top: 0;
+      display: flex;
+      align-items: end;
+      justify-content: center;
+      z-index: 10;
+    }
+    
+    .sticky-card-section:nth-child(1) {
+      z-index: 10;
+    }
+    
+    .sticky-card-section:nth-child(2) {
+      z-index: 20;
+    }
+    
+    .sticky-card-section:nth-child(3) {
+      z-index: 30;
+    }
+    
+    .sticky-card-section:nth-child(4) {
+      z-index: 40;
+    }
+    
+    .sticky-card-section:nth-child(5) {
+      z-index: 50;
+    }
+    
+    .sticky-card-section:nth-child(6) {
+      z-index: 60;
+    }
+    
+    .sticky-card-section:nth-child(7) {
+      z-index: 70;
+    }
+    
     .stack-animation-wrapper {
-      perspective: 1000px;
+      position: relative;
     }
     
     .stack-feature-card {
-      opacity: 0;
-      transform: translateY(30px) scale(0.95);
-      animation: stackIn 0.6s ease-out forwards;
+      position: relative;
+      width: 100%;
+      max-width: 600px;
+      margin: 0 auto;
+      padding: 0;
     }
     
-    .stack-feature-card:nth-child(1) {
-      animation-delay: 0.1s;
+    /* Service cards in sticky sections */
+    .sticky-service-section {
+      min-height: 30vh;
+
+      height: auto;
+      position: sticky;
+      top: 0;
+      display: flex;
+      align-items: end;
+      justify-content: center;
+      z-index: 10;
     }
     
-    .stack-feature-card:nth-child(2) {
-      animation-delay: 0.2s;
+    .sticky-service-section:nth-child(1) {
+      z-index: 80;
     }
     
-    .stack-feature-card:nth-child(3) {
-      animation-delay: 0.3s;
+    .sticky-service-section:nth-child(2) {
+      z-index: 90;
     }
     
-    .stack-feature-card:nth-child(4) {
-      animation-delay: 0.4s;
+    .sticky-service-section:nth-child(3) {
+      z-index: 100;
     }
     
-    @keyframes stackIn {
-      to {
-        opacity: 1;
-        transform: translateY(0) scale(1);
+    .service-expandable-card {
+      position: relative;
+      width: 100%;
+      max-width: 400px;
+      margin: 0 auto;
+      padding: 0;
+    }
+    
+    /* Desktop: Show cards in grid, not sticky */
+    @media (min-width: 1024px) {
+      .sticky-card-section,
+      .sticky-service-section {
+        position: relative;
+        height: auto;
+        z-index: auto;
+      }
+      
+      .stack-animation-wrapper {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 2rem;
+      }
+      
+      .stack-services-wrapper {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 1.5rem;
       }
     }
     
     /* Zoom effect for "How it works" steps on hover */
     .step-card {
-      transition: transform 0.3s ease-out, box-shadow 0.3s ease-out;
+      transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1),  0.4s ease-out;
       cursor: pointer;
+      will-change: transform;
     }
-    
+
     .step-card:hover {
-      transform: scale(1.05);
+      transform: scale(1.08) translateY(-8px);
       z-index: 20;
     }
-    
+
     @media (hover: hover) {
       .step-card:hover {
-        transform: scale(1.08) translateY(-4px);
+        transform: scale(1.1) translateY(-10px);
       }
       
       .step-card:hover .step-icon {
-        transform: scale(1.1);
+        transform: scale(1.15) rotate(5deg);
+      }
+      
+      .step-card:hover .step-title {
+        transform: translateY(-2px);
+        color: rgb(20 184 166);
+      }
+      
+      .step-card:hover .step-desc {
+        transform: translateY(-2px);
+        opacity: 0.9;
       }
     }
-    
+
     .step-icon {
-      transition: transform 0.3s ease-out;
+      transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+      will-change: transform;
+    }
+    
+    .step-title {
+      transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1), color 0.3s ease-out;
+      will-change: transform;
+    }
+    
+    .step-desc {
+      transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1), opacity 0.3s ease-out;
+      will-change: transform;
     }
   </style>
 
@@ -365,7 +461,7 @@
 
   <!-- ================= MOBILE SIDEBAR ================= -->
   <div id="mobileMenu"
-    class="fixed inset-y-0 left-0 w-80 bg-white z-50 transform -translate-x-full transition-transform duration-300 md:hidden shadow-2xl">
+    class="fixed inset-y-0 left-0 w-80 bg-white z-[9999] transform -translate-x-full transition-transform duration-300 md:hidden shadow-2xl">
 
     <!-- Header -->
     <div class="p-6 border-b border-gray-200 flex justify-between items-start">
@@ -419,7 +515,11 @@
     <div id="videoCarousel" class="absolute inset-0 w-full h-full">
       <video id="heroVideo1" class="absolute inset-0 w-full h-full object-cover video-slide active" autoplay muted loop
         playsinline style="will-change: transform; transform: translateZ(0);">
-        <source src="https://whvciyqeygesuwqnibzh.supabase.co/storage/v1/object/public/hosting_video/7461704-sd_960_540_30fps.mp4" type="video/mp4">
+        <source src="./src/video/clip1.mp4" type="video/mp4">
+      </video>
+      <video id="heroVideo3" class="absolute inset-0 w-full h-full object-cover video-slide active" autoplay muted loop
+        playsinline style="will-change: transform; transform: translateZ(0);">
+        <source src="./src/video/clip3.mp4" type="video/mp4">
       </video>
       <video id="heroVideo2" class="absolute inset-0 w-full h-full object-cover video-slide" muted loop playsinline
         style="will-change: transform; transform: translateZ(0);">
@@ -586,11 +686,15 @@
         </p>
       </div>
 
-      <!-- Benefits Grid -->
-      <div class="grid lg:grid-cols-2 gap-8 mb-16 stack-animation-wrapper">
 
-        <!-- Feature 1 -->
-        <div class="group relative mobile-feature-card stack-feature-card" data-feature="multilingual">
+      
+
+      <!-- Benefits Grid - Sticky Card Stacking -->
+      <div class="stack-animation-wrapper">
+
+        <!-- Feature 1 - Sticky Section -->
+        <section class="sticky-card-section">
+          <div class="group relative mobile-feature-card stack-feature-card w-full" data-feature="multilingual">
           <div
             class="absolute inset-0 bg-gradient-to-r from-teal-500/10 to-blue-500/10 rounded-2xl blur-xl group-hover:blur-2xl transition-all duration-300">
           </div>
@@ -675,9 +779,11 @@
             </div>
           </div>
         </div>
+        </section>
 
-        <!-- Feature 2 -->
-        <div class="group relative mobile-feature-card stack-feature-card" data-feature="savings">
+        <!-- Feature 2 - Sticky Section -->
+        <section class="sticky-card-section">
+          <div class="group relative mobile-feature-card stack-feature-card w-full" data-feature="savings">
           <div
             class="absolute inset-0 bg-gradient-to-r from-orange-500/10 to-red-500/10 rounded-2xl blur-xl group-hover:blur-2xl transition-all duration-300">
           </div>
@@ -762,9 +868,11 @@
             </div>
           </div>
         </div>
+        </section>
 
-        <!-- Feature 3 -->
-        <div class="group relative mobile-feature-card stack-feature-card" data-feature="postcare">
+        <!-- Feature 3 - Sticky Section -->
+        <section class="sticky-card-section">
+          <div class="group relative mobile-feature-card stack-feature-card w-full" data-feature="postcare">
           <div
             class="absolute inset-0 bg-gradient-to-r from-blue-500/10 to-indigo-500/10 rounded-2xl blur-xl group-hover:blur-2xl transition-all duration-300">
           </div>
@@ -849,9 +957,11 @@
             </div>
           </div>
         </div>
+        </section>
 
-        <!-- Feature 4 -->
-        <div class="group relative mobile-feature-card stack-feature-card" data-feature="companion">
+        <!-- Feature 4 - Sticky Section -->
+        <section class="sticky-card-section">
+          <div class="group relative mobile-feature-card stack-feature-card w-full" data-feature="companion">
           <div
             class="absolute inset-0 bg-gradient-to-r from-emerald-500/10 to-green-500/10 rounded-2xl blur-xl group-hover:blur-2xl transition-all duration-300">
           </div>
@@ -919,14 +1029,16 @@
             </div>
           </div>
         </div>
+        </section>
 
       </div>
 
-      <!-- Additional Services Row -->
-      <div class="grid md:grid-cols-3 gap-6">
+      <!-- Additional Services Row - Sticky Card Stacking -->
+      <div class="stack-services-wrapper">
 
-        <!-- Service 1 -->
-        <div class="group relative service-expandable-card" data-service="assistance">
+        <!-- Service 1 - Sticky Section -->
+        <section class="sticky-service-section">
+          <div class="group relative service-expandable-card w-full" data-service="assistance">
           <div
             class="bg-white rounded-xl p-4 sm:p-6 border border-slate-200 hover:border-teal-300 transition-all duration-300 hover:shadow-lg">
             <!-- Mobile Header (Clickable) -->
@@ -968,9 +1080,11 @@
             </div>
           </div>
         </div>
+        </section>
 
-        <!-- Service 2 -->
-        <div class="group relative service-expandable-card" data-service="analysis">
+        <!-- Service 2 - Sticky Section -->
+        <section class="sticky-service-section">
+          <div class="group relative service-expandable-card w-full" data-service="analysis">
           <div
             class="bg-white rounded-xl p-4 sm:p-6 border border-slate-200 hover:border-teal-300 transition-all duration-300 hover:shadow-lg">
             <!-- Mobile Header (Clickable) -->
@@ -1012,9 +1126,11 @@
             </div>
           </div>
         </div>
+        </section>
 
-        <!-- Service 3 -->
-        <div class="group relative service-expandable-card" data-service="nutrition">
+        <!-- Service 3 - Sticky Section -->
+        <section class="sticky-service-section">
+          <div class="group relative service-expandable-card w-full" data-service="nutrition">
           <div
             class="bg-white rounded-xl p-4 sm:p-6 border border-slate-200 hover:border-teal-300 transition-all duration-300 hover:shadow-lg">
             <!-- Mobile Header (Clickable) -->
@@ -1056,6 +1172,7 @@
             </div>
           </div>
         </div>
+        </section>
 
       </div>
 
@@ -1240,7 +1357,7 @@
       <div class="relative max-w-md mx-auto lg:hidden">
         <!-- Slider Container -->
         <div class="benefits-slider-container overflow-hidden rounded-2xl">
-          <div class="benefits-slider flex transition-transform duration-500 ease-in-out">
+          <div class="benefits-slider flex transition-transform duration-300 ease-in-out">
             
             <!-- Slide 1 (Government Support + Zero Waiting) -->
             <div class="benefits-slide w-full flex-shrink-0 p-2">
@@ -2425,6 +2542,7 @@
       const benefitsIndicators = document.querySelectorAll('.benefits-indicator');
       const benefitsPrevBtn = document.querySelector('.benefits-prev-btn');
       const benefitsNextBtn = document.querySelector('.benefits-next-btn');
+      let benefitsAutoPlayInterval;
       
       function updateBenefitsSlider() {
         // Move slider
@@ -2432,9 +2550,10 @@
           benefitsSlider.style.transform = `translateX(-${benefitsCurrentSlide * 100}%)`;
         }
         
-        // Update indicators
+        // Update indicators (use modulo for infinite loop)
+        const displayIndex = benefitsCurrentSlide % benefitsTotalSlides;
         benefitsIndicators.forEach((indicator, index) => {
-          if (index === benefitsCurrentSlide) {
+          if (index === displayIndex) {
             indicator.classList.remove('bg-slate-300');
             indicator.classList.add('bg-teal-500');
           } else {
@@ -2443,43 +2562,65 @@
           }
         });
         
-        // Update button states
-        if (benefitsPrevBtn) benefitsPrevBtn.disabled = benefitsCurrentSlide === 0;
-        if (benefitsNextBtn) benefitsNextBtn.disabled = benefitsCurrentSlide === benefitsTotalSlides - 1;
+        // Remove disabled states for infinite loop
+        if (benefitsPrevBtn) benefitsPrevBtn.disabled = false;
+        if (benefitsNextBtn) benefitsNextBtn.disabled = false;
       }
       
-      // Previous button
+      function goToNextSlide() {
+        benefitsCurrentSlide = (benefitsCurrentSlide + 1) % benefitsTotalSlides;
+        updateBenefitsSlider();
+      }
+      
+      function goToPrevSlide() {
+        benefitsCurrentSlide = (benefitsCurrentSlide - 1 + benefitsTotalSlides) % benefitsTotalSlides;
+        updateBenefitsSlider();
+      }
+      
+      // Previous button - keep autoplay running
       if (benefitsPrevBtn) {
         benefitsPrevBtn.addEventListener('click', () => {
-          if (benefitsCurrentSlide > 0) {
-            benefitsCurrentSlide--;
-            updateBenefitsSlider();
-          }
+          goToPrevSlide();
+          // Don't stop autoplay, just continue
         });
       }
       
-      // Next button
+      // Next button - keep autoplay running
       if (benefitsNextBtn) {
         benefitsNextBtn.addEventListener('click', () => {
-          if (benefitsCurrentSlide < benefitsTotalSlides - 1) {
-            benefitsCurrentSlide++;
-            updateBenefitsSlider();
-          }
+          goToNextSlide();
+          // Don't stop autoplay, just continue
         });
       }
       
-      // Indicator buttons
+      // Indicator buttons - keep autoplay running
       benefitsIndicators.forEach((indicator, index) => {
         indicator.addEventListener('click', () => {
           benefitsCurrentSlide = index;
           updateBenefitsSlider();
+          // Don't stop autoplay, just continue
         });
       });
+      
+      // Auto-play function - continuous and faster
+      function startBenefitsAutoPlay() {
+        // Clear any existing interval first
+        if (benefitsAutoPlayInterval) {
+          clearInterval(benefitsAutoPlayInterval);
+        }
+        benefitsAutoPlayInterval = setInterval(() => {
+          goToNextSlide();
+        }, 2000); // Change slide every 2 seconds (faster)
+      }
       
       // Initialize benefits slider
       updateBenefitsSlider();
       
+      // Start auto-play
+      startBenefitsAutoPlay();
+      
     </script>
+
   </section>
  
 
