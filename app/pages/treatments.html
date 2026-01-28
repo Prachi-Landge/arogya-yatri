@@ -13,6 +13,7 @@
 
   <!-- CSS styles -->
   <link rel="stylesheet" href="../style/basic-nav.css">
+  <link rel="stylesheet" href="../style/animations.css">
 
   <!-- Tailwind -->
   <script src="https://cdn.tailwindcss.com"></script>
@@ -332,7 +333,7 @@ white-space: normal;
     <div class="absolute inset-0 bg-gradient-to-br from-slate-900/80 via-slate-900/60 to-teal-900/50 z-10"></div>
     
     <!-- Content -->
-    <div class="relative z-20 max-w-4xl mx-auto px-6 text-center text-white">
+    <div class="relative z-20 max-w-4xl mx-auto px-6 text-center text-white animate-on-scroll">
       <span class="inline-flex items-center gap-2 px-4 py-2 bg-teal-500/20 backdrop-blur-sm border border-teal-400/30 rounded-full text-teal-300 text-sm font-medium mb-6">
         <i class='bx bx-plus-medical'></i>
         Medical Excellence
@@ -354,7 +355,7 @@ white-space: normal;
 
 <!-- ================= COST CALCULATOR BAR ================= -->
 <section id="cost-calculator" class="py-12 bg-gradient-to-br from-teal-50 to-slate-50 border-b border-teal-100">
-  <div class="max-w-7xl mx-auto px-6">
+  <div class="max-w-7xl mx-auto px-6 animate-on-scroll">
     <div class="bg-white rounded-2xl shadow-xl border border-teal-100 p-6 md:p-8">
       <!-- Header -->
       <div class="text-center mb-8">
@@ -424,7 +425,7 @@ white-space: normal;
 </section>
 
 <!-- ================= IMAGE TREATMENTS SECTION ================= -->
-<section class="py-10 bg-white">
+<section class="py-10 bg-white animate-on-scroll">
   <div class="max-w-7xl mx-auto px-6">
 
     <!-- Heading -->
@@ -2639,5 +2640,6 @@ white-space: normal;
   });
 </script>
 
+<script src="../script/scroll-animations.js"></script>
 </body>
 </html>

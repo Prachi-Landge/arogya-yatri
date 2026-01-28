@@ -10,6 +10,7 @@
 
   <!-- Boxicons -->
   <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="../style/animations.css">
 
   <!-- Tailwind -->
   <script src="https://cdn.tailwindcss.com"></script>
@@ -332,7 +333,7 @@ white-space: normal;
 
 <!-- ================== DOCTORS PAGE HEADING ================== -->
 <section class="relative bg-white py-8 md:py-0 border-b border-slate-100">
-  <div class="max-w-7xl mx-auto px-4 sm:px-6">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 animate-on-scroll">
 
     <div class="grid lg:grid-cols-12 gap-6 md:gap-10 items-center">
 
@@ -406,7 +407,7 @@ white-space: normal;
 </section>
 
 <!-- Results -->
-<section class="mb-8 md:mb-12 px-4 sm:px-6 py-6 sm:py-8 z-20">
+<section class="mb-8 md:mb-12 px-4 sm:px-6 py-6 sm:py-8 z-20 animate-on-scroll">
   <div class="max-w-7xl mx-auto">
     <div class="doctor-slider-container relative">
       <div id="doctorSlider" class="doctor-slider flex transition-transform duration-500 ease-in-out">
@@ -902,5 +903,6 @@ window.addEventListener('resize', () => {
 renderDoctors();
 </script>
 
+<script src="../script/scroll-animations.js"></script>
 </body>
 </html>
