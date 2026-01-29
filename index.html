@@ -224,6 +224,36 @@
       align-items: center;
     }
 
+    /* Desktop Benefits – single row auto-slider (lg+) */
+    .benefits-desktop-slider-container {
+      overflow: hidden;
+      width: 100%;
+    }
+    .benefits-desktop-slider {
+      display: flex;
+      transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    .benefits-desktop-slide {
+      flex: 0 0 100%;
+      width: 100%;
+      min-width: 0;
+    }
+    .benefits-desktop-nav-btn {
+      min-width: 44px;
+      min-height: 44px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+      transition: all 0.3s ease;
+    }
+    .benefits-desktop-nav-btn:hover {
+      background: rgb(240 253 250);
+      box-shadow: 0 6px 20px rgba(20, 184, 166, 0.3);
+      transform: scale(1.1);
+      border-color: rgb(20 184 166);
+    }
+    .benefits-desktop-nav-btn:active {
+      transform: scale(0.95);
+    }
+
     /* Mobile responsive improvements */
     @media (max-width: 1023px) {
       .mobile-feature-header {
@@ -274,9 +304,13 @@
     }
     
     /* Sticky Card Stacking Animation */
-    .sticky-card-section {
-      min-height: 30vh;
+    .stack-row {
+      display: block;
+      min-height: 60vh;
+    }
 
+    .stack-row .sticky-card-section {
+      min-height: 30vh;
       height: auto;
       position: sticky;
       top: 0;
@@ -285,39 +319,19 @@
       justify-content: center;
       z-index: 10;
     }
-    
-    .sticky-card-section:nth-child(1) {
+
+    .stack-row .sticky-card-section:nth-child(1) {
       z-index: 10;
     }
-    
-    .sticky-card-section:nth-child(2) {
+
+    .stack-row .sticky-card-section:nth-child(2) {
       z-index: 20;
     }
-    
-    .sticky-card-section:nth-child(3) {
-      z-index: 30;
-    }
-    
-    .sticky-card-section:nth-child(4) {
-      z-index: 40;
-    }
-    
-    .sticky-card-section:nth-child(5) {
-      z-index: 50;
-    }
-    
-    .sticky-card-section:nth-child(6) {
-      z-index: 60;
-    }
-    
-    .sticky-card-section:nth-child(7) {
-      z-index: 70;
-    }
-    
+
     .stack-animation-wrapper {
       position: relative;
     }
-    
+
     .stack-feature-card {
       position: relative;
       width: 100%;
@@ -359,21 +373,38 @@
       padding: 0;
     }
     
-    /* Desktop: Show cards in grid, not sticky */
+    /* Desktop: Benefits = rows of 2 with sticky stack; Services = single row of 3, no stacking */
     @media (min-width: 1024px) {
-      .sticky-card-section,
       .sticky-service-section {
         position: relative;
         height: auto;
         z-index: auto;
       }
-      
+
       .stack-animation-wrapper {
+        display: flex;
+        flex-direction: column;
+        gap: 2rem;
+      }
+
+      .stack-row {
         display: grid;
         grid-template-columns: repeat(2, 1fr);
         gap: 2rem;
+        min-height: 75vh;
+        align-items: start;
       }
-      
+
+      .stack-row .sticky-card-section {
+        position: sticky;
+        top: 0;
+      }
+
+      .stack-row .stack-feature-card {
+        max-width: none;
+        margin: 0;
+      }
+
       .stack-services-wrapper {
         display: grid;
         grid-template-columns: repeat(3, 1fr);
@@ -730,7 +761,7 @@
 
       <!-- Benefits Grid - Sticky Card Stacking -->
       <div class="stack-animation-wrapper animate-on-scroll">
-
+        <div class="stack-row">
         <!-- Feature 1 - Sticky Section -->
         <section class="sticky-card-section">
           <div class="group relative mobile-feature-card stack-feature-card w-full" data-feature="multilingual">
@@ -908,7 +939,9 @@
           </div>
         </div>
         </section>
+        </div>
 
+        <div class="stack-row">
         <!-- Feature 3 - Sticky Section -->
         <section class="sticky-card-section">
           <div class="group relative mobile-feature-card stack-feature-card w-full" data-feature="postcare">
@@ -1069,6 +1102,7 @@
           </div>
         </div>
         </section>
+        </div>
 
       </div>
 
@@ -1568,145 +1602,157 @@
         </div>
       </div>
 
-      <!-- Key Benefits - Desktop Grid (hidden on mobile, visible on lg+) -->
-      <div class="hidden lg:grid grid-cols-3 gap-8">
+      <!-- Key Benefits - Desktop single-row auto-slider (hidden on mobile, visible on lg+) -->
+      <div class="hidden lg:block relative benefits-desktop-slider-wrapper px-12">
+        <div class="benefits-desktop-slider-container">
+          <div class="benefits-desktop-slider flex">
 
-        <!-- Government Support -->
-        <div class="group relative benefits-expandable-card" data-benefit="government">
-          <div class="bg-white rounded-xl p-6 border border-slate-200 shadow-sm hover:shadow-lg transition-all duration-300">
-            <div class="flex items-start gap-4">
-              <div class="w-12 h-12 rounded-lg bg-gradient-to-br from-blue-500 to-blue-600 flex items-center justify-center shadow-md flex-shrink-0">
-                <i class='bx bx-shield-quarter text-xl text-white'></i>
+          <!-- Slide 1: Government, Zero Waiting, World-Class Care -->
+          <div class="benefits-desktop-slide w-full flex-shrink-0">
+            <div class="grid grid-cols-3 gap-8">
+              <div class="group relative benefits-expandable-card" data-benefit="government">
+                <div class="bg-white rounded-xl p-6 border border-slate-200 shadow-sm hover:shadow-lg transition-all duration-300">
+                  <div class="flex items-start gap-4">
+                    <div class="w-12 h-12 rounded-lg bg-gradient-to-br from-blue-500 to-blue-600 flex items-center justify-center shadow-md flex-shrink-0">
+                      <i class='bx bx-shield-quarter text-xl text-white'></i>
+                    </div>
+                    <div class="flex-1 min-w-0">
+                      <h4 class="font-semibold text-slate-900 mb-2 text-base">Government 'Heal in India' Program</h4>
+                      <p class="text-sm text-slate-600 leading-relaxed">
+                        Official support with simplified e-Medical visas, fast-track approvals, and dedicated helplines.
+                      </p>
+                    </div>
+                  </div>
+                </div>
               </div>
-              <div class="flex-1 min-w-0">
-                <h4 class="font-semibold text-slate-900 mb-2 text-base">Government 'Heal in India' Program</h4>
-                <p class="text-sm text-slate-600 leading-relaxed">
-                  Official support with simplified e-Medical visas, fast-track approvals, and dedicated helplines.
-                </p>
+              <div class="group relative benefits-expandable-card" data-benefit="waiting">
+                <div class="bg-white rounded-xl p-6 border border-slate-200 shadow-sm hover:shadow-lg transition-all duration-300">
+                  <div class="flex items-start gap-4">
+                    <div class="w-12 h-12 rounded-lg bg-gradient-to-br from-emerald-500 to-emerald-600 flex items-center justify-center shadow-md flex-shrink-0">
+                      <i class='bx bx-time text-xl text-white'></i>
+                    </div>
+                    <div class="flex-1 min-w-0">
+                      <h4 class="font-semibold text-slate-900 mb-2 text-base">0 Waiting Period</h4>
+                      <p class="text-sm text-slate-600 leading-relaxed">
+                        Immediate care and faster recovery with no waiting lists for treatments and procedures.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="group relative benefits-expandable-card" data-benefit="healthcare">
+                <div class="bg-white rounded-xl p-6 border border-slate-200 shadow-sm hover:shadow-lg transition-all duration-300">
+                  <div class="flex items-start gap-4">
+                    <div class="w-12 h-12 rounded-lg bg-gradient-to-br from-teal-500 to-teal-600 flex items-center justify-center shadow-md flex-shrink-0">
+                      <i class='bx bx-health text-xl text-white'></i>
+                    </div>
+                    <div class="flex-1 min-w-0">
+                      <h4 class="font-semibold text-slate-900 mb-2 text-base">World-Class Healthcare</h4>
+                      <p class="text-sm text-slate-600 leading-relaxed">
+                        NABH/JCI accredited hospitals with internationally trained doctors and cutting-edge technology.
+                      </p>
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
-        </div>
 
-        <!-- Zero Waiting -->
-        <div class="group relative benefits-expandable-card" data-benefit="waiting">
-          <div class="bg-white rounded-xl p-6 border border-slate-200 shadow-sm hover:shadow-lg transition-all duration-300">
-            <div class="flex items-start gap-4">
-              <div class="w-12 h-12 rounded-lg bg-gradient-to-br from-emerald-500 to-emerald-600 flex items-center justify-center shadow-md flex-shrink-0">
-                <i class='bx bx-time text-xl text-white'></i>
+          <!-- Slide 2: 80% Cost Savings, Clear Communication, 24/7 Support -->
+          <div class="benefits-desktop-slide w-full flex-shrink-0">
+            <div class="grid grid-cols-3 gap-8">
+              <div class="group relative benefits-expandable-card" data-benefit="affordable">
+                <div class="bg-white rounded-xl p-6 border border-slate-200 shadow-sm hover:shadow-lg transition-all duration-300">
+                  <div class="flex items-start gap-4">
+                    <div class="w-12 h-12 rounded-lg bg-gradient-to-br from-orange-500 to-orange-600 flex items-center justify-center shadow-md flex-shrink-0">
+                      <i class='bx bx-dollar-circle text-xl text-white'></i>
+                    </div>
+                    <div class="flex-1 min-w-0">
+                      <h4 class="font-semibold text-slate-900 mb-2 text-base">80% Cost Savings</h4>
+                      <p class="text-sm text-slate-600 leading-relaxed">
+                        High-quality treatments at affordable costs without compromising on safety or outcomes.
+                      </p>
+                    </div>
+                  </div>
+                </div>
               </div>
-              <div class="flex-1 min-w-0">
-                <h4 class="font-semibold text-slate-900 mb-2 text-base">0 Waiting Period</h4>
-                <p class="text-sm text-slate-600 leading-relaxed">
-                  Immediate care and faster recovery with no waiting lists for treatments and procedures.
-                </p>
+              <div class="group relative benefits-expandable-card" data-benefit="communication">
+                <div class="bg-white rounded-xl p-6 border border-slate-200 shadow-sm hover:shadow-lg transition-all duration-300">
+                  <div class="flex items-start gap-4">
+                    <div class="w-12 h-12 rounded-lg bg-gradient-to-br from-violet-500 to-violet-600 flex items-center justify-center shadow-md flex-shrink-0">
+                      <i class='bx bx-world text-xl text-white'></i>
+                    </div>
+                    <div class="flex-1 min-w-0">
+                      <h4 class="font-semibold text-slate-900 mb-2 text-base">Clear Communication</h4>
+                      <p class="text-sm text-slate-600 leading-relaxed">
+                        English-speaking medical teams and professional interpreters for seamless communication.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="group relative benefits-expandable-card" data-benefit="support">
+                <div class="bg-white rounded-xl p-6 border border-slate-200 shadow-sm hover:shadow-lg transition-all duration-300">
+                  <div class="flex items-start gap-4">
+                    <div class="w-12 h-12 rounded-lg bg-gradient-to-br from-cyan-500 to-cyan-600 flex items-center justify-center shadow-md flex-shrink-0">
+                      <i class='bx bx-support text-xl text-white'></i>
+                    </div>
+                    <div class="flex-1 min-w-0">
+                      <h4 class="font-semibold text-slate-900 mb-2 text-base">24/7 Support Available</h4>
+                      <p class="text-sm text-slate-600 leading-relaxed">
+                        24/7 personalized care, one-stop MVT portal, and comprehensive concierge services.
+                      </p>
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
-        </div>
 
-        <!-- World-Class Care -->
-        <div class="group relative benefits-expandable-card" data-benefit="healthcare">
-          <div class="bg-white rounded-xl p-6 border border-slate-200 shadow-sm hover:shadow-lg transition-all duration-300">
-            <div class="flex items-start gap-4">
-              <div class="w-12 h-12 rounded-lg bg-gradient-to-br from-teal-500 to-teal-600 flex items-center justify-center shadow-md flex-shrink-0">
-                <i class='bx bx-health text-xl text-white'></i>
+          <!-- Slide 3: Holistic Healing, Safe & Well-Connected -->
+          <div class="benefits-desktop-slide w-full flex-shrink-0">
+            <div class="grid grid-cols-3 gap-8">
+              <div class="group relative benefits-expandable-card" data-benefit="holistic">
+                <div class="bg-white rounded-xl p-6 border border-slate-200 shadow-sm hover:shadow-lg transition-all duration-300">
+                  <div class="flex items-start gap-4">
+                    <div class="w-12 h-12 rounded-lg bg-gradient-to-br from-amber-500 to-amber-600 flex items-center justify-center shadow-md flex-shrink-0">
+                      <i class='bx bx-spa text-xl text-white'></i>
+                    </div>
+                    <div class="flex-1 min-w-0">
+                      <h4 class="font-semibold text-slate-900 mb-2 text-base">Holistic Healing Experience</h4>
+                      <p class="text-sm text-slate-600 leading-relaxed">
+                        Combine modern medicine with Ayurveda, Yoga, and wellness traditions in scenic recovery destinations.
+                      </p>
+                    </div>
+                  </div>
+                </div>
               </div>
-              <div class="flex-1 min-w-0">
-                <h4 class="font-semibold text-slate-900 mb-2 text-base">World-Class Healthcare</h4>
-                <p class="text-sm text-slate-600 leading-relaxed">
-                  NABH/JCI accredited hospitals with internationally trained doctors and cutting-edge technology.
-                </p>
+              <div class="group relative benefits-expandable-card" data-benefit="safety">
+                <div class="bg-white rounded-xl p-6 border border-slate-200 shadow-sm hover:shadow-lg transition-all duration-300">
+                  <div class="flex items-start gap-4">
+                    <div class="w-12 h-12 rounded-lg bg-gradient-to-br from-indigo-500 to-indigo-600 flex items-center justify-center shadow-md flex-shrink-0">
+                      <i class='bx bx-shield text-xl text-white'></i>
+                    </div>
+                    <div class="flex-1 min-w-0">
+                      <h4 class="font-semibold text-slate-900 mb-2 text-base">Safe & Well-Connected</h4>
+                      <p class="text-sm text-slate-600 leading-relaxed">
+                        Safe cities with fast-track airport assistance, interpreter support, and excellent connectivity.
+                      </p>
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
-        </div>
 
-        <!-- 80% Cost Savings -->
-        <div class="group relative benefits-expandable-card" data-benefit="affordable">
-          <div class="bg-white rounded-xl p-6 border border-slate-200 shadow-sm hover:shadow-lg transition-all duration-300">
-            <div class="flex items-start gap-4">
-              <div class="w-12 h-12 rounded-lg bg-gradient-to-br from-orange-500 to-orange-600 flex items-center justify-center shadow-md flex-shrink-0">
-                <i class='bx bx-dollar-circle text-xl text-white'></i>
-              </div>
-              <div class="flex-1 min-w-0">
-                <h4 class="font-semibold text-slate-900 mb-2 text-base">80% Cost Savings</h4>
-                <p class="text-sm text-slate-600 leading-relaxed">
-                  High-quality treatments at affordable costs without compromising on safety or outcomes.
-                </p>
-              </div>
-            </div>
           </div>
         </div>
-
-        <!-- Clear Communication -->
-        <div class="group relative benefits-expandable-card" data-benefit="communication">
-          <div class="bg-white rounded-xl p-6 border border-slate-200 shadow-sm hover:shadow-lg transition-all duration-300">
-            <div class="flex items-start gap-4">
-              <div class="w-12 h-12 rounded-lg bg-gradient-to-br from-violet-500 to-violet-600 flex items-center justify-center shadow-md flex-shrink-0">
-                <i class='bx bx-world text-xl text-white'></i>
-              </div>
-              <div class="flex-1 min-w-0">
-                <h4 class="font-semibold text-slate-900 mb-2 text-base">Clear Communication</h4>
-                <p class="text-sm text-slate-600 leading-relaxed">
-                  English-speaking medical teams and professional interpreters for seamless communication.
-                </p>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- 24/7 Support Available -->
-        <div class="group relative benefits-expandable-card" data-benefit="support">
-          <div class="bg-white rounded-xl p-6 border border-slate-200 shadow-sm hover:shadow-lg transition-all duration-300">
-            <div class="flex items-start gap-4">
-              <div class="w-12 h-12 rounded-lg bg-gradient-to-br from-cyan-500 to-cyan-600 flex items-center justify-center shadow-md flex-shrink-0">
-                <i class='bx bx-support text-xl text-white'></i>
-              </div>
-              <div class="flex-1 min-w-0">
-                <h4 class="font-semibold text-slate-900 mb-2 text-base">24/7 Support Available</h4>
-                <p class="text-sm text-slate-600 leading-relaxed">
-                  24/7 personalized care, one-stop MVT portal, and comprehensive concierge services.
-                </p>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Holistic Healing -->
-        <div class="group relative benefits-expandable-card" data-benefit="holistic">
-          <div class="bg-white rounded-xl p-6 border border-slate-200 shadow-sm hover:shadow-lg transition-all duration-300">
-            <div class="flex items-start gap-4">
-              <div class="w-12 h-12 rounded-lg bg-gradient-to-br from-amber-500 to-amber-600 flex items-center justify-center shadow-md flex-shrink-0">
-                <i class='bx bx-spa text-xl text-white'></i>
-              </div>
-              <div class="flex-1 min-w-0">
-                <h4 class="font-semibold text-slate-900 mb-2 text-base">Holistic Healing Experience</h4>
-                <p class="text-sm text-slate-600 leading-relaxed">
-                  Combine modern medicine with Ayurveda, Yoga, and wellness traditions in scenic recovery destinations.
-                </p>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Safe & Well-Connected -->
-        <div class="group relative benefits-expandable-card" data-benefit="safety">
-          <div class="bg-white rounded-xl p-6 border border-slate-200 shadow-sm hover:shadow-lg transition-all duration-300">
-            <div class="flex items-start gap-4">
-              <div class="w-12 h-12 rounded-lg bg-gradient-to-br from-indigo-500 to-indigo-600 flex items-center justify-center shadow-md flex-shrink-0">
-                <i class='bx bx-shield text-xl text-white'></i>
-              </div>
-              <div class="flex-1 min-w-0">
-                <h4 class="font-semibold text-slate-900 mb-2 text-base">Safe & Well-Connected</h4>
-                <p class="text-sm text-slate-600 leading-relaxed">
-                  Safe cities with fast-track airport assistance, interpreter support, and excellent connectivity.
-                </p>
-              </div>
-            </div>
-          </div>
-        </div>
-
+        <button type="button" id="benefitsDesktopPrevBtn" class="benefits-desktop-nav-btn absolute left-4 top-1/2 -translate-y-1/2 z-20 w-12 h-12 flex items-center justify-center rounded-full bg-white border-2 border-slate-300 text-slate-700 hover:bg-teal-50 hover:border-teal-300 hover:text-teal-700 transition-all shadow-lg" aria-label="Previous benefits">
+          <i class='bx bx-chevron-left text-2xl'></i>
+        </button>
+        <button type="button" id="benefitsDesktopNextBtn" class="benefits-desktop-nav-btn absolute right-4 top-1/2 -translate-y-1/2 z-20 w-12 h-12 flex items-center justify-center rounded-full bg-white border-2 border-slate-300 text-slate-700 hover:bg-teal-50 hover:border-teal-300 hover:text-teal-700 transition-all shadow-lg" aria-label="Next benefits">
+          <i class='bx bx-chevron-right text-2xl'></i>
+        </button>
       </div>
 
     </div>
@@ -2484,6 +2530,52 @@
       
       updateBenefitsSlider();
       setInterval(goToNextSlide, 2500); // Continuous infinite loop every 2.5s
+      
+      // Desktop Benefits – continuous infinite single-row auto-slider with nav (lg+ only)
+      const benefitsDesktopSlider = document.querySelector('.benefits-desktop-slider');
+      const benefitsDesktopPrevBtn = document.getElementById('benefitsDesktopPrevBtn');
+      const benefitsDesktopNextBtn = document.getElementById('benefitsDesktopNextBtn');
+      if (benefitsDesktopSlider) {
+        let benefitsDesktopSlide = 0;
+        const benefitsDesktopTotalSlides = 3;
+        let benefitsDesktopInterval = null;
+        const BENEFITS_DESKTOP_INTERVAL_MS = 4000;
+
+        function updateBenefitsDesktopSlider() {
+          benefitsDesktopSlider.style.transform = `translateX(-${benefitsDesktopSlide * 100}%)`;
+        }
+        function goToNextDesktopSlide() {
+          benefitsDesktopSlide = (benefitsDesktopSlide + 1) % benefitsDesktopTotalSlides;
+          updateBenefitsDesktopSlider();
+        }
+        function goToPrevDesktopSlide() {
+          benefitsDesktopSlide = (benefitsDesktopSlide - 1 + benefitsDesktopTotalSlides) % benefitsDesktopTotalSlides;
+          updateBenefitsDesktopSlider();
+        }
+        function startBenefitsDesktopAutoSlide() {
+          if (benefitsDesktopInterval) clearInterval(benefitsDesktopInterval);
+          benefitsDesktopInterval = setInterval(goToNextDesktopSlide, BENEFITS_DESKTOP_INTERVAL_MS);
+        }
+        function resetBenefitsDesktopAutoSlide() {
+          startBenefitsDesktopAutoSlide(); // resets timer on user interaction
+        }
+
+        updateBenefitsDesktopSlider();
+        startBenefitsDesktopAutoSlide();
+
+        if (benefitsDesktopPrevBtn) {
+          benefitsDesktopPrevBtn.addEventListener('click', function() {
+            goToPrevDesktopSlide();
+            resetBenefitsDesktopAutoSlide();
+          });
+        }
+        if (benefitsDesktopNextBtn) {
+          benefitsDesktopNextBtn.addEventListener('click', function() {
+            goToNextDesktopSlide();
+            resetBenefitsDesktopAutoSlide();
+          });
+        }
+      }
       
     </script>
 
