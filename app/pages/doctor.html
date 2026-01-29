@@ -107,6 +107,34 @@ white-space: normal;
   max-width: 100%;
 }
 
+/* Mobile: full-width single card, minimal padding so card uses whole width */
+@media (max-width: 639px) {
+  .doctor-results-section {
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+  }
+  .doctor-slider-container {
+    padding: 0 0.5rem; /* minimal – nav buttons overlap card edges */
+  }
+  /* Card content inset so it doesn’t sit under nav buttons */
+  .doctor-slider .doctor-card-article {
+    padding-left: 2.75rem;
+    padding-right: 2.75rem;
+    box-sizing: border-box;
+  }
+  .doctor-slider .doctor-card-article > div:first-child {
+    padding-left: 0;
+    padding-right: 0;
+  }
+  .doctor-slider .doctor-card-article > div:last-child {
+    padding-left: 0;
+    padding-right: 0;
+  }
+  .doctor-slide .grid {
+    gap: 0;
+  }
+}
+
 @media (min-width: 640px) {
   .doctor-slider-container {
     padding: 0 3.5rem;
@@ -181,14 +209,20 @@ white-space: normal;
   pointer-events: none;
 }
 
-/* Ensure buttons are visible on all screen sizes */
-@media (max-width: 640px) {
+/* Mobile: nav buttons aligned and visible, don’t overlap card content */
+@media (max-width: 639px) {
   .doctor-nav-btn {
-    width: 40px;
-    height: 40px;
-    min-width: 40px;
-    min-height: 40px;
-    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
+    width: 44px;
+    height: 44px;
+    min-width: 44px;
+    min-height: 44px;
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.2);
+    left: 0.5rem;
+    right: auto;
+  }
+  .doctor-nav-btn:last-of-type {
+    left: auto;
+    right: 0.5rem;
   }
 }
 
@@ -407,7 +441,7 @@ white-space: normal;
 </section>
 
 <!-- Results -->
-<section class="mb-8 md:mb-12 px-4 sm:px-6 py-6 sm:py-8 z-20 animate-on-scroll">
+<section class="doctor-results-section mb-8 md:mb-12 px-4 sm:px-6 py-6 sm:py-8 z-20 animate-on-scroll">
   <div class="max-w-7xl mx-auto">
     <div class="doctor-slider-container relative">
       <div id="doctorSlider" class="doctor-slider flex transition-transform duration-500 ease-in-out">
@@ -694,7 +728,7 @@ function getCardsPerSlide() {
 
 function createDoctorCard(d) {
   return `
-    <article class="group bg-white rounded-2xl border border-slate-200 hover:border-teal-400 shadow-sm hover:shadow-xl transition-all duration-300 overflow-hidden flex flex-col h-full transform hover:-translate-y-1">
+    <article class="doctor-card-article group bg-white rounded-2xl border border-slate-200 hover:border-teal-400 shadow-sm hover:shadow-xl transition-all duration-300 overflow-hidden flex flex-col h-full transform hover:-translate-y-1">
       <!-- Image Section -->
       <div class="relative pt-6 sm:pt-8 pb-3 sm:pb-4 px-4 sm:px-6 flex justify-center bg-gradient-to-b from-slate-50 to-white">
         <div class="relative">
